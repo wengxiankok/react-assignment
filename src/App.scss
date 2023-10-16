@@ -1,0 +1,71 @@
+$sm-screen: 640px;
+$md-screen: 768px;
+$lg-screen: 1024px;
+$xl-screen: 1280px;
+$xxl-screen: 1536px;
+
+// Define a mixin for media queries
+@mixin respond-to($breakpoint) {
+  @media screen and (max-width: $breakpoint) {
+    @content;
+  }
+}
+
+body {
+  background-color: #000;
+  color: #fff;
+}
+
+.App {
+  text-align: center;
+}
+
+.container {
+  margin: auto;
+}
+
+ul {
+  padding-left: 0px;
+  list-style-type: none;
+}
+
+.anime__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+
+  @include respond-to($xl-screen) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @include respond-to($lg-screen) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include respond-to($sm-screen) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &-list {
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    cursor: pointer;
+
+    img {
+      width: 160px;
+      height: 240px;
+      aspect-ratio: auto 160/240;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        background-color: rgba(0,0,0, 0.6);
+      }
+    }
+  }
+}
